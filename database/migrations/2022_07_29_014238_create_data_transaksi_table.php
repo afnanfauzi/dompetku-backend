@@ -15,12 +15,11 @@ class CreateDataTransaksiTable extends Migration
     {
         Schema::create('data_transaksi', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
+            $table->tinyText('catatan');
             $table->decimal('total_uang', $precision = 15, $scale = 2);
             $table->date('tanggal_transaksi');
-            $table->text('keterangan')->nullable();
-            $table->tinyInteger('jenis_transaksi')->comment('0 = Pengeluaran, 1 = Pemasukan');
             $table->foreignId('kategori_id')->constrained('kategori')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

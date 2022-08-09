@@ -17,6 +17,7 @@ class CreateHutangTable extends Migration
             $table->id();
             $table->tinyInteger('status')->comment('0 = Belum Lunas, 1 = Lunas');
             $table->foreignId('mitra_id')->constrained('mitra')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

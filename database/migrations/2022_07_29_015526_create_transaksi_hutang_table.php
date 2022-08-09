@@ -17,7 +17,8 @@ class CreateTransaksiHutangTable extends Migration
             $table->id();
             $table->date('tanggal_transaksi');
             $table->decimal('total_uang', $precision = 15, $scale = 2);
-            $table->text('keterangan')->nullable();
+            $table->tinyText('catatan')->nullable();
+            $table->tinyInteger('jenis')->comment('0 = Hutang, 1 = Piutang');
             $table->foreignId('hutang_id')->constrained('hutang')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

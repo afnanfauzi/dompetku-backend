@@ -18,6 +18,7 @@ class CreateMitraTable extends Migration
             $table->string('nama_mitra');
             $table->string('no_hp')->nullable();
             $table->tinyInteger('is_active')->comment('0 = Nonaktif, 1 = Aktif');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

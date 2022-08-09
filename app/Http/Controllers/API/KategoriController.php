@@ -29,7 +29,16 @@ class KategoriController extends BaseController
                 return $query->where('nama_kategori', 'like', "%$search%");
             })->where('user_id', '=', $user_id)->latest()->paginate($paging);
 
-            return $this->sendResponse($kategori, 'Categories retrieved successfully.');
+            $kategori_aktif = Kategori::when($search, function ($query, $search) {
+                return $query->where('nama_kategori', 'like', "%$search%");
+            })->where('user_id', '=', $user_id)->where('is_active', '=', 1)->latest()->paginate($paging);
+
+            $data = [
+                "kategori" =>$kategori,
+                "kategori_aktif" => $kategori_aktif,
+            ];
+
+            return $this->sendResponse($data, 'Categories retrieved successfully.');
             // return $this->sendResponse(Kategori::collection($kategori), 'Categories product retrieved successfully.');
         }else{
             return $this->sendError('Unauthorized.', ['error'=>'Unauthorized']);
@@ -61,8 +70,9 @@ class KategoriController extends BaseController
             $kategori = Kategori::create([
                 'nama_kategori' => $input['nama_kategori'],
                 'is_active' => $input['is_active'],
-                'plot_uang' => $input['plot_uang'],
-                'user_id' => $input['user_id']
+                'jenis_transaksi' => $input['jenis_transaksi'],
+                'rencana_anggaran' => $input['rencana_anggaran'],
+                'user_id' => $input['user_id'],
              ]);
        
             return $this->sendResponse(new Kat($kategori), 'Category created successfully.');
@@ -119,7 +129,8 @@ class KategoriController extends BaseController
             $kategori = Kategori::findorfail($id);
             $kategori->nama_kategori = $input['nama_kategori'];
             $kategori->is_active = $input['is_active'];
-            $kategori->plot_uang = $input['plot_uang'];
+            $kategori->jenis_transaksi = $input['jenis_transaksi'];
+            $kategori->rencana_anggaran = $input['rencana_anggaran'];
             $kategori->save();
     
             return $this->sendResponse(new Kat($kategori), 'Category updated successfully.');

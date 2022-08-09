@@ -14,6 +14,12 @@ class DataTransaksi extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'catatan' => $this->catatan,
+            'total_uang' => $this->total_uang,
+            'tanggal_transaksi' => $this->tanggal_transaksi,
+            'kategori_id' => $this->kategori_id,
+        ];
     }
 }

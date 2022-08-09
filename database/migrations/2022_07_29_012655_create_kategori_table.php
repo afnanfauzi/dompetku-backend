@@ -17,7 +17,8 @@ class CreateKategoriTable extends Migration
             $table->id();
             $table->string('nama_kategori');
             $table->tinyInteger('is_active')->comment('0 = Nonaktif, 1 = Aktif');
-            $table->decimal('plot_uang', $precision = 15, $scale = 2)->nullable();
+            $table->tinyInteger('jenis_transaksi')->comment('0 = Pengeluaran, 1 = Pemasukan');
+            $table->decimal('rencana_anggaran', $precision = 15, $scale = 2)->nullable();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

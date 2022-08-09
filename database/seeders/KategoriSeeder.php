@@ -17,21 +17,21 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'nama_kategori' => 'Makanan & Minuman',
             'is_active' => 1,
-            'plot_uang' => 0,
+            'jenis_transaksi' => 0,
             'user_id' => 1,
         ]);
 
         Kategori::create([
             'nama_kategori' => 'Transportasi',
             'is_active' => 1,
-            'plot_uang' => 0,
+            'jenis_transaksi' => 0,
             'user_id' => 1,
         ]);
 
         Kategori::create([
             'nama_kategori' => 'Pulsa & Internet',
             'is_active' => 1,
-            'plot_uang' => 0,
+            'jenis_transaksi' => 0,
             'user_id' => 1,
         ]);
     }

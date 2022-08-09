@@ -65,7 +65,7 @@ class PermissionSeeder extends Seeder
         ]);
 
         Permission::create([
-            'name' => 'rekap-read',
+            'name' => 'dashboard-read',
             'guard_name' => 'web',
         ]);
 
