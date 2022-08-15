@@ -19,6 +19,7 @@ class Kategori extends JsonResource
             'nama_kategori' => $this->nama_kategori,
             'is_active' => $this->is_active,
             'jenis_transaksi' => $this->jenis_transaksi,
+            'rencana_anggaran' => $this->rencana_anggaran,
         ];
     }
 }

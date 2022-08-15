@@ -15,7 +15,35 @@ class KategoriSeeder extends Seeder
     public function run()
     {
         Kategori::create([
+            'nama_kategori' => 'Gaji',
+            'is_active' => 1,
+            'jenis_transaksi' => 1,
+            'user_id' => 1,
+        ]);
+
+        Kategori::create([
             'nama_kategori' => 'Makanan & Minuman',
+            'is_active' => 1,
+            'jenis_transaksi' => 0,
+            'user_id' => 1,
+        ]);
+
+        Kategori::create([
+            'nama_kategori' => 'Kebutuhan Kucing',
+            'is_active' => 1,
+            'jenis_transaksi' => 0,
+            'user_id' => 1,
+        ]);
+
+        Kategori::create([
+            'nama_kategori' => 'Keinginan',
+            'is_active' => 1,
+            'jenis_transaksi' => 0,
+            'user_id' => 1,
+        ]);
+
+        Kategori::create([
+            'nama_kategori' => 'Kewajiban',
             'is_active' => 1,
             'jenis_transaksi' => 0,
             'user_id' => 1,
