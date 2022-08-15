@@ -14,6 +14,11 @@ class Mitra extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'nama_mitra' => $this->nama_mitra,
+            'is_active' => $this->is_active,
+            'no_hp' => $this->no_hp,
+        ];
     }
 }

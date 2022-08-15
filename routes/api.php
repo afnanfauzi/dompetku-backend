@@ -3,7 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\DataTransaksiController;
-use App\Http\Controllers\API\Hutang\HutangController;
+use App\Http\Controllers\API\HutangPiutangController;
 use App\Http\Controllers\API\KategoriController;
 use App\Http\Controllers\API\MitraController;
 use App\Http\Controllers\API\PengaturanController;
@@ -32,9 +32,8 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::get('logout', [AuthController::class, 'logout']);
     Route::apiResource('dashboard', DashboardController::class)->middleware(['auth:sanctum', 'ability:administrator,user']);
     Route::apiResource('transaksi', DataTransaksiController::class)->middleware(['auth:sanctum', 'ability:administrator,user']);
-    Route::apiResource('hutang', HutangController::class)->middleware(['auth:sanctum', 'ability:administrator,user']);
+    Route::apiResource('hutang', HutangPiutangController::class)->middleware(['auth:sanctum', 'ability:administrator,user']);
     Route::apiResource('kategori', KategoriController::class)->middleware(['auth:sanctum', 'ability:administrator,user']);
     Route::apiResource('mitra', MitraController::class)->middleware(['auth:sanctum', 'ability:administrator,user']);
     Route::apiResource('pengaturan', PengaturanController::class)->middleware(['auth:sanctum', 'ability:administrator']);
-    Route::apiResource('rekap', RekapController::class)->middleware(['auth:sanctum', 'ability:administrator,user']);
 });

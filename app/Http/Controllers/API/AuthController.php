@@ -35,7 +35,7 @@ class AuthController extends BaseController
             }
         } 
         else{ 
-            return $this->sendError('Unauthorized.', ['error'=>'Unauthorized']);
+            return $this->sendError('The provided credentials do not match our records.', ['error'=>'Unauthenticated']);
         } 
     }
 

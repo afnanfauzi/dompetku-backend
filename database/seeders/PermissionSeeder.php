@@ -35,17 +35,22 @@ class PermissionSeeder extends Seeder
         ]);
 
         Permission::create([
-            'name' => 'hutang-create',
+            'name' => 'hutang-piutang-create',
             'guard_name' => 'web',
         ]);
 
         Permission::create([
-            'name' => 'hutang-read',
+            'name' => 'hutang-piutang-read',
             'guard_name' => 'web',
         ]);
 
         Permission::create([
-            'name' => 'hutang-update',
+            'name' => 'hutang-piutang-update',
+            'guard_name' => 'web',
+        ]);
+
+        Permission::create([
+            'name' => 'hutang-piutang-delete',
             'guard_name' => 'web',
         ]);
 

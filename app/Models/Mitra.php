@@ -11,5 +11,10 @@ class Mitra extends Model
 
     protected $table= 'mitra';
     protected $guarded = [];
+
+    public function hutang()
+    {
+        return $this->hasMany(HutangPiutang::class);
+    }
     
 }

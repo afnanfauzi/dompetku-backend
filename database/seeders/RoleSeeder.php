@@ -20,7 +20,7 @@ class RoleSeeder extends Seeder
             'is_active' => '1'
         ]);     
 
-        $admin->givePermissionTo('transaksi-create','transaksi-read','transaksi-update','transaksi-delete','hutang-create','hutang-read','hutang-update','kategori-create','kategori-read','kategori-update','dashboard-read','mitra-create','mitra-read','mitra-update','pengaturan-read','pengaturan-update');
+        $admin->givePermissionTo('transaksi-create','transaksi-read','transaksi-update','transaksi-delete','hutang-piutang-create','hutang-piutang-read','hutang-piutang-update','hutang-piutang-delete','kategori-create','kategori-read','kategori-update','dashboard-read','mitra-create','mitra-read','mitra-update','pengaturan-read','pengaturan-update');
         
 
         $user = Role::create([
@@ -29,7 +29,7 @@ class RoleSeeder extends Seeder
             'is_active' => '1'
         ]);     
 
-        $user->givePermissionTo('transaksi-create','transaksi-read','transaksi-update','transaksi-delete','hutang-create','hutang-read','hutang-update','kategori-create','kategori-read','kategori-update','dashboard-read','mitra-create','mitra-read','mitra-update');
+        $user->givePermissionTo('transaksi-create','transaksi-read','transaksi-update','transaksi-delete','hutang-piutang-create','hutang-piutang-read','hutang-piutang-update','hutang-piutang-delete','kategori-create','kategori-read','kategori-update','dashboard-read','mitra-create','mitra-read','mitra-update');
 
     }
 }

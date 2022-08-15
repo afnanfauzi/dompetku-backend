@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHutangTable extends Migration
+class CreateHutangPiutangTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateHutangTable extends Migration
      */
     public function up()
     {
-        Schema::create('hutang', function (Blueprint $table) {
+        Schema::create('hutang_piutang', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('status')->comment('0 = Belum Lunas, 1 = Lunas');
+            $table->date('tanggal_transaksi');
+            $table->decimal('total_uang', $precision = 15, $scale = 2);
+            $table->tinyText('catatan')->nullable();
+            $table->tinyInteger('jenis')->comment('0 = Hutang, 1 = Piutang');
             $table->foreignId('mitra_id')->constrained('mitra')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
@@ -29,6 +32,6 @@ class CreateHutangTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hutang');
+        Schema::dropIfExists('hutang_piutang');
     }
 }
