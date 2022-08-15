@@ -22,7 +22,6 @@ class HutangPiutangController extends BaseController
         $user = Auth::user(); 
         $mitra = request('mitra_id');
         $user_id = request('user_id');
-        // return $mitra;
         
         if($user->hasPermissionTo('hutang-piutang-read')){
 
