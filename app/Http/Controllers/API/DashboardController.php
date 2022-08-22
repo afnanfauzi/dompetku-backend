@@ -22,15 +22,18 @@ class DashboardController extends BaseController
         $user_id = request('user_id');
         $tanggal_awal = date('Y-m-d', strtotime(request('tanggal_awal')));
         $tanggal_akhir = date('Y-m-d', strtotime(request('tanggal_akhir')));
-        // $user_id = '1';
-        // $tanggal_awal = date('Y-m-d', strtotime('2022-08-01'));
-        // $tanggal_akhir = date('Y-m-d', strtotime('2022-08-08'));
+        $kategori_id = request('kategori');
+        $paging = request('paginate');
         
-        
+
         if($user->hasPermissionTo('dashboard-read')){
             $transaksi = DataTransaksi::select('kategori_id', DataTransaksi::raw('SUM(total_uang) as total_uang'))->groupBy('kategori_id')->whereBetween('tanggal_transaksi', array($tanggal_awal,$tanggal_akhir))->where('user_id', '=', $user_id)->get();
             // $kategori = Kategori::where('user_id', '=', $user_id)->orderby('nama_kategori', 'asc')->get();
             $kategori_dashboard = Kategori::where('user_id', '=', $user_id)->where('is_active', '=', 1)->where('jenis_transaksi', '=', 0)->orderby('nama_kategori', 'asc')->get();
+
+            $ringkasan_transaksi = DataTransaksi::with('kategori')->when($kategori_id, function ($query, $kategori_id) {
+                return $query->where('kategori_id', $kategori_id);
+            })->whereBetween('tanggal_transaksi', array($tanggal_awal,$tanggal_akhir))->where('user_id', '=', $user_id)->latest()->paginate($paging);
 
             $list = [];
             $push = [];
@@ -54,7 +57,8 @@ class DashboardController extends BaseController
             array_push($list, $push);
             
             $data = [
-                'list_anggaran' => $list
+                'list_anggaran' => $list,
+                'ringkasan_transaksi' => $ringkasan_transaksi
             ];
             // return $data;
             return $this->sendResponse($data, 'Transaction retrieved successfully.');
